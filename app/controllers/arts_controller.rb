@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# Arts Controller
 class ArtsController < ApplicationController
-  before_action :set_art, only: [:show, :edit, :update, :destroy]
+  before_action :set_art, only: %i[show edit update destroy]
 
   # GET /arts
   # GET /arts.json
@@ -9,8 +12,7 @@ class ArtsController < ApplicationController
 
   # GET /arts/1
   # GET /arts/1.json
-  def show
-  end
+  def show; end
 
   # GET /arts/new
   def new
@@ -18,8 +20,7 @@ class ArtsController < ApplicationController
   end
 
   # GET /arts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /arts
   # POST /arts.json
@@ -28,7 +29,7 @@ class ArtsController < ApplicationController
 
     respond_to do |format|
       if @art.save
-        #format.html { redirect_to @art, notice: 'Art was successfully created.' }
+        # format.html { redirect_to @art, notice: 'Art was successfully created.' }
         format.html { redirect_to arts_path }
         format.json { render :show, status: :created, location: @art }
       else
@@ -63,13 +64,14 @@ class ArtsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_art
-      @art = Art.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def art_params
-      params.require(:art).permit(:artist, :year, :image_url, :description, :title)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_art
+    @art = Art.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def art_params
+    params.require(:art).permit(:artist, :year, :image_url, :description, :title)
+  end
 end
